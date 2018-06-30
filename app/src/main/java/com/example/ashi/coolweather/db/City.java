@@ -1,10 +1,12 @@
 package com.example.ashi.coolweather.db;
 
+import org.litepal.crud.DataSupport;
+
 /**
  * Created by ashi on 6/30/18.
  */
 
-public class City {
+public class City extends DataSupport {
 
     private int id;
 
