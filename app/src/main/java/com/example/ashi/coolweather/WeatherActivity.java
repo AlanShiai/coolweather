@@ -1,7 +1,9 @@
 package com.example.ashi.coolweather;
 
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.Image;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -43,6 +45,7 @@ public class WeatherActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setFitStatusBar();
         setContentView(R.layout.activity_weather);
         mapIdToView();
         SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(this);
@@ -60,6 +63,15 @@ public class WeatherActivity extends AppCompatActivity {
             Glide.with(this).load(bingPic).into(bingPicImg);
         } else {
             loadBingPic();
+        }
+    }
+
+    private void setFitStatusBar() {
+        if (Build.VERSION.SDK_INT >= 21) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN |
+            View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
     }
 
